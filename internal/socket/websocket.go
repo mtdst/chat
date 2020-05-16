@@ -1,4 +1,4 @@
-package mysocket
+package socket
 
 import (
 	"log"
