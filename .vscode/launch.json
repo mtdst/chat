@@ -1,0 +1,19 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/chat/.",
+            "env": {},
+            "args": [
+                // "--workspace_folder=${workspaceFolder}",
+                // "--api_url=http://localhost:65432",
+                // "--port=65433",
+                // "--default_image_url=/templates/no_photo.png"
+            ]
+        }
+    ]
+}
