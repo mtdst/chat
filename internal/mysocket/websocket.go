@@ -1,4 +1,4 @@
-package websocket
+package mysocket
 
 import (
 	"log"
@@ -14,6 +14,7 @@ var upgrader = websocket.Upgrader{
 
 var savedsocketreader []*socketReader
 
+// Create dd
 func Create(w http.ResponseWriter, r *http.Request) {
 	log.Println("socket request")
 	if savedsocketreader == nil {
