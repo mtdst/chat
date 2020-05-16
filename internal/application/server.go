@@ -12,8 +12,9 @@ func Run() error {
 	fs := http.FileServer(http.Dir("./views/"))
 	myhttp.Handle("/", http.StripPrefix("", fs))
 
-	myhttp.HandleFunc("/socket", socket)
+	myhttp.HandleFunc("/socket", websocket)
 
 	log.Println("http://localhost:8080")
 	http.ListenAndServe(":8080", myhttp)
+	return nil
 }
