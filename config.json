@@ -6,42 +6,16 @@
         }
     },
     "db": {
-        "defaultConnection": "pg",
+        "defaultConnection": "developer",
         "pool": {
-            "pg": {
-                "driver": "postgres",
+            "developer": {
+                "driver": "mysql",
                 "connectionStringParams": {
-                    "host": "185.175.46.35",
-                    "port": 6432,
-                    "user": "apteka_aprel",
-                    "password": "4TyBxpmGEBwk69TYOeSh",
-                    "name": "apteka_aprel",
-                    "connMaxLifetime": 1800000,
-                    "maxIdleConns": 0,
-                    "maxOpenConns": 10
-                }
-            },
-            "pgCOProduction": {
-                "driver": "postgres",
-                "connectionStringParams": {
-                    "host": "77.233.0.98",
-                    "port": 5432,
-                    "user": "site_aprel",
-                    "password": "SaH0Sy36",
-                    "name": "production",
-                    "connMaxLifetime": 1800000,
-                    "maxIdleConns": 0,
-                    "maxOpenConns": 10
-                }
-            },
-            "pgProcessing": {
-                "driver": "postgres",
-                "connectionStringParams": {
-                    "host": "77.233.0.98",
-                    "port": 65429,
-                    "user": "api_loyal",
-                    "password": "v2ePDxpsqbB3GFfaLMSg",
-                    "name": "processing",
+                    "host": "localhost",
+                    "port": 3306,
+                    "user": "i9t4r5x4",
+                    "password": "8V0a6O7s",
+                    "name": "payadme",
                     "connMaxLifetime": 1800000,
                     "maxIdleConns": 0,
                     "maxOpenConns": 10
@@ -68,58 +42,7 @@
         },
         "remoteAddrHeader": "X-Real-IP"
     },
-    "payment": {
-        "payGateURL": "https://paygate.apteka-april.ru"
-    },
-    "sms": {
-        "user": "ns698521",
-        "password": "gFt34bB51faw"
-    },
     "modules": {
-        "banners": {
-            "cacheDuration": "1m"
-        },
-        "catalog": {
-            "cacheDuration": "1m"
-        },
-        "feedback": {
-            "smtp": {
-                "host": "mail.aprelit.xyz",
-                "port": 587,
-                "user": "etasks@aprelit.xyz",
-                "password": "Ad82z:kNG8Va"
-            },
-            "sender": "Аптека «Апрель» <no-reply@apteka-april.ru>",
-            "recipient": "xfoby88@gmail.com",
-            "subject": "Мобильное приложение. Обратная связь"
-        },
-        "orders": {
-            "db": {
-                "primary": {
-                    "read": "pg",
-                    "create": "pg",
-                    "update": "pg"
-                },
-                "secondary": {
-                    "read": "pgCOProduction",
-                    "create": "pgCOProduction",
-                    "update": "pgCOProduction"
-                }
-            },
-            "statusGroups": {
-                "cacheDuration": "1m"
-            },
-            "payConfirmations": {
-                "db": {
-                    "primary": {
-                        "update": "pg"
-                    },
-                    "secondary": {
-                        "create": "pgCOProduction"
-                    }
-                }
-            }
-        },
         "me": {
             "db": {
                 "secondary": {

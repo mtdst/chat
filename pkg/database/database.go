@@ -2,18 +2,23 @@ package database
 
 import (
 	"database/sql"
+	"errors"
+	"strings"
+
+	"github.com/mtdst/chat/pkg/config"
+	"github.com/x-foby/go-short/database"
 )
 
-// Connect to database
-func Connect() (db *sql.DB, err error) {
-	dbDriver := "mysql"
-	dbUser := "i9t4r5x4"
-	dbPass := "8V0a6O7s"
-	dbName := "payadme"
-	db, err = sql.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName)
-	if err != nil {
-		return nil, err
+// Open устанавливает соединение с базой данных из пула, если соединение ещё не установлено, и возвращает ссылку на него
+func Open(name string) (*sql.DB, error) {
+	s := strings.TrimSpace(name)
+	if s == "" {
+		s = strings.TrimSpace(config.Get().Database.DefaultConnection)
 	}
 
-	return db, nil
+	if s == "" {
+		return nil, errors.New("Не задано соединение по умолчанию")
+	}
+
+	return database.Open(s)
 }
