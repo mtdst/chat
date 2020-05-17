@@ -8,7 +8,6 @@ import (
 	"strconv"
 
 	flags "github.com/jessevdk/go-flags"
-	"github.com/mtdst/chat/internal/socket"
 )
 
 var options = struct {
@@ -39,9 +38,9 @@ func Run() error {
 	mux := http.NewServeMux()
 
 	mux.Handle("/", http.StripPrefix("", fs))
-	mux.HandleFunc("/socket", socket.Create)
+	mux.HandleFunc("/socket", handler)
 
-	log.Println("http://localhost:" + port)
+	log.Println("Сервер успешно запущен: http://localhost:" + port)
 
 	http.ListenAndServe(":"+port, mux)
 	return nil

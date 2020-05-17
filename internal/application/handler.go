@@ -1,31 +1,16 @@
 package application
 
 import (
-	"log"
 	"net/http"
+
+	"github.com/mtdst/chat/internal/socket"
+	"github.com/mtdst/chat/pkg/database"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	log.Println("socket request")
-	if savedsocketreader == nil {
-		savedsocketreader = make([]*socketReader, 0)
+	db, err = database.Connect()
+	if err != nil {
+		panic(err.Error())
 	}
-
-	defer func() {
-		err := recover()
-		if err != nil {
-			log.Println(err)
-		}
-		r.Body.Close()
-
-	}()
-	con, _ := upgrader.Upgrade(w, r, nil)
-
-	ptrSocketReader := &socketReader{
-		con: con,
-	}
-
-	savedsocketreader = append(savedsocketreader, ptrSocketReader)
-
-	ptrSocketReader.startThread()
+	socket.Create(w, r)
 }
